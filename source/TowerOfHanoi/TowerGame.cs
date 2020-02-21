@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace TowerOfHanoi
 {
-  public class TowerGame
+  public class TowerGame: ITowerGame
   {
     public TowerGame(int pegSize)
     {
@@ -20,6 +20,9 @@ namespace TowerOfHanoi
       _peg1 = new Peg(PegSize);
       _peg2 = new Peg(PegSize);
       _peg3 = new Peg(PegSize);
+      Peg1 = new ReadonlyPeg(_peg1);
+      Peg2 = new ReadonlyPeg(_peg2);
+      Peg3 = new ReadonlyPeg(_peg3);
 
       foreach (var size in Enumerable.Range(1, PegSize).Reverse())
       {
@@ -27,9 +30,9 @@ namespace TowerOfHanoi
       }
     }
     public int PegSize { get; }
-    public IReadonlyPeg Peg1 => _peg1;
-    public IReadonlyPeg Peg2 => _peg2;
-    public IReadonlyPeg Peg3 => _peg3;
+    public IReadonlyPeg Peg1 { get; private set; } 
+    public IReadonlyPeg Peg2 { get; private set; }
+    public IReadonlyPeg Peg3 { get; private set; }
 
     public bool IsGameOver()
     {
