@@ -7,22 +7,15 @@ namespace TowerOfHanoi
   {
     static void Main(string[] args)
     {
-      var game = new TowerGame();
+      var game = new TowerGame(9);
 
       var lastError = "";
       while (true)
       {
         Console.Clear();
-        Console.ForegroundColor = ConsoleColor.White;
-        DrawPegOutline(peg1LeftOffset, 1);
-        DrawPegOutline(peg2LeftOffset, 2);
-        DrawPegOutline(peg3LeftOffset, 3);
+        DrawGame(game);
 
-        DrawPegDiscs(peg1LeftOffset, game.Peg1);
-        DrawPegDiscs(peg2LeftOffset, game.Peg2);
-        DrawPegDiscs(peg3LeftOffset, game.Peg3);
-
-        Console.CursorTop = 12;
+        Console.CursorTop = game.PegSize + 3;
         Console.CursorLeft = 0;
 
         Console.ForegroundColor = ConsoleColor.Red;
@@ -46,10 +39,6 @@ namespace TowerOfHanoi
       }
     }
 
-    private const int pegMaxWidth = 21;
-    private const int peg1LeftOffset = 0;
-    private const int peg2LeftOffset = 25;
-    private const int peg3LeftOffset = 50;
     private static readonly Dictionary<int, ConsoleColor> discColors = new Dictionary<int, ConsoleColor>
     {
       { 1, ConsoleColor.Blue },
@@ -63,20 +52,45 @@ namespace TowerOfHanoi
       { 9, ConsoleColor.Green },
     };
 
-    private static void DrawPegDiscs(int leftOffset, IReadonlyPeg peg)
+
+    /*
+    private static void CreateConsoleColors(int pegSize)
+    {
+      var colors = new[]
+      {
+        ConsoleColor.Blue, ConsoleColor.Red, ConsoleColor.Yellow, ConsoleColor.Green, ConsoleColor.Magenta
+      };
+      var index = 0;
+
+      discColors.cl
+    }*/
+
+    private static void DrawGame(TowerGame game)
+    {
+      DrawPegOutline(1, game.PegSize);
+      DrawPegOutline(2, game.PegSize);
+      DrawPegOutline(3, game.PegSize);
+
+      DrawPegDiscs(1, game.Peg1);
+      DrawPegDiscs(2, game.Peg2);
+      DrawPegDiscs(3, game.Peg3);
+    }
+
+    private static void DrawPegDiscs(int pegNumber, IReadonlyPeg peg)
     {
       var discNumber = 0;
+      var leftOffset = ((pegNumber - 1) * peg.MaxDiscs) + 1;
       foreach (var disc in peg.AllDiscs())
       {
-        DrawDisc(leftOffset, discNumber, disc.Size, discColors[disc.Size]);
+        DrawDisc(leftOffset, peg.MaxDiscs, discNumber, disc.Size, discColors[disc.Size]);
         discNumber++;
       }
     }
 
-    private static void DrawDisc(int pegLeftOffset, int discNumber, int size, ConsoleColor color)
+    private static void DrawDisc(int pegLeftOffset, int pegSize, int discNumber, int size, ConsoleColor color)
     {
       Console.ForegroundColor = color;
-      Console.CursorTop = 8 - discNumber;
+      Console.CursorTop = pegSize - 1 - discNumber;
       Console.CursorLeft = pegLeftOffset;
       var output = "|";
       for (var i = 0; i < size - 1; i++)
@@ -84,27 +98,23 @@ namespace TowerOfHanoi
         output = $"+{output}+";
       }
       output = $"[{output}]";
-      while (output.Length < pegMaxWidth)
+      while (output.Length < pegSize)
       {
         output = $" {output} ";
       }
       Console.Write(output);
     }
 
-    private static void DrawPegOutline(int leftOffset, int pegNumber)
+    private static void DrawPegOutline(int pegNumber, int pegSize)
     {
       var topStart = 0;
+      var leftOffset = ((pegNumber - 1) * pegSize) + 1;
       Console.ForegroundColor = ConsoleColor.Cyan;
-      ConsoleWrite(topStart++, leftOffset, "          |          ");
-      ConsoleWrite(topStart++, leftOffset, "          |          ");
-      ConsoleWrite(topStart++, leftOffset, "          |          ");
-      ConsoleWrite(topStart++, leftOffset, "          |          ");
-      ConsoleWrite(topStart++, leftOffset, "          |          ");
-      ConsoleWrite(topStart++, leftOffset, "          |          ");
-      ConsoleWrite(topStart++, leftOffset, "          |          ");
-      ConsoleWrite(topStart++, leftOffset, "          |          ");
-      ConsoleWrite(topStart++, leftOffset, "          |          ");
-      ConsoleWrite(topStart++, leftOffset, "=====================");
+      for (var i = 0; i < pegSize; i++)
+      {
+        ConsoleWrite(topStart++, leftOffset, "          |          ");
+      }
+      ConsoleWrite(topStart++, leftOffset, new string('=', pegSize));
       Console.ForegroundColor = ConsoleColor.DarkCyan;
       ConsoleWrite(topStart++, leftOffset, $"        Peg {pegNumber} ");
     }

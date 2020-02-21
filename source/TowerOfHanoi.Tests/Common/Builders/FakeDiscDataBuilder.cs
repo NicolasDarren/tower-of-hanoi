@@ -3,35 +3,16 @@ using TowerOfHanoi.Tests.Common.DomainRandom;
 
 namespace TowerOfHanoi.Tests.Common.Builders
 {
-  public class FakeDiscDataBuilder
+  public class FakeDiscDataBuilder : TestDataBuilder<FakeDiscDataBuilder, IDisc>
   {
-    private IDisc _fake = null;
-
-    private FakeDiscDataBuilder()
-    {
-      _fake = Substitute.For<IDisc>();
-    }
-
-    public static FakeDiscDataBuilder Create()
-    {
-      return new FakeDiscDataBuilder()
-        .WithRandomSize();
-    }
-
     public FakeDiscDataBuilder WithRandomSize()
     {
-      return WithSize(RandomTower.Disc.Size);
+      return WithProp(f => f.Size.Returns(RandomTower.Disc.Size));
     }
 
     public FakeDiscDataBuilder WithSize(int size)
     {
-      _fake.Size.Returns(size);
-      return this;
-    }
-
-    public IDisc Build()
-    {
-      return _fake;
+      return WithProp(f => f.Size.Returns(size));
     }
   }
 }

@@ -5,35 +5,35 @@ namespace TowerOfHanoi
 {
   public class TowerGame
   {
-    public TowerGame()
+    public TowerGame(int pegSize)
     {
+      PegSize = pegSize;
       CreateNewGame();
     }
 
-    private const int _pegSize = 9;
     private IPeg _peg1;
     private IPeg _peg2;
     private IPeg _peg3;
 
     private void CreateNewGame()
     {
-      _peg1 = new Peg(_pegSize);
-      _peg2 = new Peg(_pegSize);
-      _peg3 = new Peg(_pegSize);
+      _peg1 = new Peg(PegSize);
+      _peg2 = new Peg(PegSize);
+      _peg3 = new Peg(PegSize);
 
-      foreach (var size in Enumerable.Range(1,_pegSize).Reverse())
+      foreach (var size in Enumerable.Range(1, PegSize).Reverse())
       {
         _peg1.PlaceDisc(new Disc(size));
       }
     }
-
+    public int PegSize { get; }
     public IReadonlyPeg Peg1 => _peg1;
     public IReadonlyPeg Peg2 => _peg2;
     public IReadonlyPeg Peg3 => _peg3;
 
     public bool IsGameOver()
     {
-      return _peg3.CurrentNumberOfDiscs == _pegSize;
+      return _peg3.CurrentNumberOfDiscs == PegSize;
     }
 
     public void PerformMove(int fromPegNumber, int toPegNumber)
