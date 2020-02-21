@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace TowerOfHanoi
 {
@@ -7,36 +8,53 @@ namespace TowerOfHanoi
   {
     static void Main(string[] args)
     {
-      var game = new TowerGame(3);
+      var game = new TowerGame(2);
       var drawer = new ConsoleDrawer();
+      var solver = new ManualSolver();
 
       var lastError = "";
-      while (true)
+      drawer.Draw(game);
+
+      Console.CursorLeft = 0;
+      Console.CursorTop = game.PegSize + 2;
+
+      foreach (var move in solver.SolveFromStart(game))
       {
-        drawer.Draw(game);
+        Thread.Sleep(solver.MillisecondDelayBetweenMoves);
 
-        Console.CursorTop = game.PegSize + 3;
-        Console.CursorLeft = 0;
-
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine(lastError);
-        Console.ForegroundColor = ConsoleColor.White;
-        Console.WriteLine("Enter your move (Source Peg, Destination Peg):");
-        var input = Console.ReadLine();
-        if (input == "") break;
-        var splitInput = input.Split(",");
-        var sourcePeg = int.Parse(splitInput[0]);
-        var destPeg = int.Parse(splitInput[1]);
         try
         {
-          lastError = "";
-          game.PerformMove(sourcePeg, destPeg);
+          game.PerformMove(move.FromPegNumber, move.ToPegNumber);
         }
         catch (Exception e)
         {
           lastError = e.Message;
         }
+
+        drawer.Draw(game);
+
+        Console.CursorLeft = 0;
+        Console.CursorTop = game.PegSize + 2;
+
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(lastError);
+        lastError = "";
+        Console.ForegroundColor = ConsoleColor.White;
       }
+
+      if (game.IsGameOver())
+      {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("The Tower has been SOLVED!!!");
+      }
+      else
+      {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine("The Tower has NOT been solved. :(");
+      }
+
+      Console.ForegroundColor = ConsoleColor.White;
+      Console.ReadLine();
     }
   }
 }
