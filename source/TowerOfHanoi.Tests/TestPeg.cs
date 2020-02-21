@@ -2,6 +2,7 @@ using System;
 using System.Transactions;
 using FluentAssertions;
 using NUnit.Framework;
+using TowerOfHanoi.Common;
 using TowerOfHanoi.Tests.Common.Builders;
 using TowerOfHanoi.Tests.Common.DomainRandom;
 

@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using System;
+using TowerOfHanoi.Common;
 using TowerOfHanoi.Tests.Common.DomainRandom;
 
 namespace TowerOfHanoi.Tests

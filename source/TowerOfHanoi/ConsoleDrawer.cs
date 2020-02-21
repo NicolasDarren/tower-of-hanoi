@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using TowerOfHanoi.Common;
 
 namespace TowerOfHanoi
 {
   public interface IDrawTheTowerGame
   {
-    void Draw(TowerGame game);
+    void Draw(ITowerGame game);
   }
 
   public class ConsoleDrawer : IDrawTheTowerGame
   {
-    public void Draw(TowerGame game)
+    public void Draw(ITowerGame game)
     {
       Console.Clear();
 

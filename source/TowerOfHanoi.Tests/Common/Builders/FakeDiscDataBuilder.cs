@@ -1,4 +1,5 @@
 ﻿using NSubstitute;
+using TowerOfHanoi.Common;
 using TowerOfHanoi.Tests.Common.DomainRandom;
 
 namespace TowerOfHanoi.Tests.Common.Builders

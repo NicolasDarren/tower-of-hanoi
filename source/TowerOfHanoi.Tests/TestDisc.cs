@@ -1,5 +1,6 @@
 using FluentAssertions;
 using NUnit.Framework;
+using TowerOfHanoi.Common;
 using TowerOfHanoi.Tests.Common.DomainRandom;
 
 namespace TowerOfHanoi.Tests

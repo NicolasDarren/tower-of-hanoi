@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TowerOfHanoi
+namespace TowerOfHanoi.Common
 {
   public class Peg: IPeg
   {

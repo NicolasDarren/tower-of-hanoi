@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace TowerOfHanoi
+namespace TowerOfHanoi.Common
 {
   public class TowerGame: ITowerGame
   {
@@ -59,6 +59,11 @@ namespace TowerOfHanoi
         fromPeg.PlaceDisc(disc);
         throw;
       }
+    }
+
+    public IReadonlyTowerGame AsReadonly()
+    {
+      return new ReadonlyTowerGame(this);
     }
 
     private IPeg GetPegByNumber(int pegNumber)

@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
+using TowerOfHanoi.Common;
 
 namespace TowerOfHanoi
 {
@@ -8,9 +8,9 @@ namespace TowerOfHanoi
   {
     static void Main(string[] args)
     {
-      var game = new TowerGame(2);
+      var game = new TowerGame(3);
       var drawer = new ConsoleDrawer();
-      var solver = new ManualSolver();
+      var solver = new SimpleSolver.SimpleSolver();
 
       var lastError = "";
       drawer.Draw(game);
@@ -18,7 +18,7 @@ namespace TowerOfHanoi
       Console.CursorLeft = 0;
       Console.CursorTop = game.PegSize + 2;
 
-      foreach (var move in solver.SolveFromStart(game))
+      foreach (var move in solver.SolveFromStart(game.AsReadonly()))
       {
         Thread.Sleep(solver.MillisecondDelayBetweenMoves);
 

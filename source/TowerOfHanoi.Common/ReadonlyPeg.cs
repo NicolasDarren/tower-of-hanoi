@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TowerOfHanoi
+namespace TowerOfHanoi.Common
 {
   public class ReadonlyPeg : IReadonlyPeg
   {

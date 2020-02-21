@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.InteropServices.ComTypes;
 
-namespace TowerOfHanoi
+namespace TowerOfHanoi.Common
 {
   public interface IReadonlyPeg
   {

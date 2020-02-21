@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TowerOfHanoi
+namespace TowerOfHanoi.Common
 {
   public class ManualSolver : ISolveTowers
   {
-    public int MillisecondDelayBetweenMoves { get; } = 1000;
+    public int MillisecondDelayBetweenMoves { get; } = 0;
 
-    public IEnumerable<TowerGameMoveModel> SolveFromStart(TowerGame game)
+    public IEnumerable<TowerGameMoveModel> SolveFromStart(IReadonlyTowerGame game)
     {
       var lastError = "";
       while (true)

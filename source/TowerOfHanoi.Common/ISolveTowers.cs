@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace TowerOfHanoi
+namespace TowerOfHanoi.Common
 {
   public interface ISolveTowers
   {
     int MillisecondDelayBetweenMoves { get; }
-    IEnumerable<TowerGameMoveModel> SolveFromStart(TowerGame game);
+    IEnumerable<TowerGameMoveModel> SolveFromStart(IReadonlyTowerGame game);
   }
 }

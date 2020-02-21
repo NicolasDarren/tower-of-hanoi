@@ -1,4 +1,4 @@
-﻿namespace TowerOfHanoi
+﻿namespace TowerOfHanoi.Common
 {
   public class TowerGameMoveModel
   {
