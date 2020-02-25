@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using TowerOfHanoi.Common;
 
-namespace TowerOfHanoi.Common
+namespace TowerOfHanoi.ManualSolver
 {
   public class ManualSolver : ISolveTowers
   {

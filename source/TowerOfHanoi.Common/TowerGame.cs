@@ -39,6 +39,11 @@ namespace TowerOfHanoi.Common
     public IReadonlyPeg Peg2 { get; private set; }
     public IReadonlyPeg Peg3 { get; private set; }
 
+    public bool IsGameUntouched()
+    {
+      return _peg1.CurrentNumberOfDiscs == PegSize;
+    }
+
     public bool IsGameOver()
     {
       return _peg3.CurrentNumberOfDiscs == PegSize;

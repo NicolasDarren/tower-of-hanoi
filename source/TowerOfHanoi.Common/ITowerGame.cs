@@ -6,6 +6,7 @@
     IReadonlyPeg Peg1 { get; }
     IReadonlyPeg Peg2 { get; }
     IReadonlyPeg Peg3 { get; }
+    bool IsGameUntouched();
     bool IsGameOver();
   }
   public interface ITowerGame: IReadonlyTowerGame

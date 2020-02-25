@@ -19,6 +19,11 @@ namespace TowerOfHanoi.Common
 
     public IReadonlyPeg Peg3 => _underlying.Peg3;
 
+    public bool IsGameUntouched()
+    {
+      return _underlying.IsGameUntouched();
+    }
+
     public bool IsGameOver()
     {
       return _underlying.IsGameOver();

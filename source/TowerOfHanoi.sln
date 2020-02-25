@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TowerOfHanoi.Tests", "Tower
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TowerOfHanoi.SimpleSolver", "TowerOfHanoi.SimpleSolver\TowerOfHanoi.SimpleSolver.csproj", "{66645FBE-4F5C-4243-B4A6-AA669510566E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TowerOfHanoi.Common", "TowerOfHanoi.Common\TowerOfHanoi.Common.csproj", "{3FA0B036-9AAF-4738-8BDE-DE375CAE07BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TowerOfHanoi.Common", "TowerOfHanoi.Common\TowerOfHanoi.Common.csproj", "{3FA0B036-9AAF-4738-8BDE-DE375CAE07BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TowerOfHanoi.ManualSolver", "TowerOfHanoi.ManualSolver\TowerOfHanoi.ManualSolver.csproj", "{CC3C79BE-E78C-4730-A612-2699873DD4EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{3FA0B036-9AAF-4738-8BDE-DE375CAE07BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FA0B036-9AAF-4738-8BDE-DE375CAE07BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FA0B036-9AAF-4738-8BDE-DE375CAE07BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC3C79BE-E78C-4730-A612-2699873DD4EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC3C79BE-E78C-4730-A612-2699873DD4EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC3C79BE-E78C-4730-A612-2699873DD4EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC3C79BE-E78C-4730-A612-2699873DD4EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
