@@ -34,9 +34,6 @@ namespace TowerOfHanoi
       var lastError = "";
       drawer.Draw(game);
 
-      Console.CursorLeft = 0;
-      Console.CursorTop = game.PegSize + 2;
-
       foreach (var move in solver.SolveFromStart(game.AsReadonly()))
       {
         Thread.Sleep(solver.MillisecondDelayBetweenMoves);
@@ -51,9 +48,6 @@ namespace TowerOfHanoi
         }
 
         drawer.Draw(game);
-
-        Console.CursorLeft = 0;
-        Console.CursorTop = game.PegSize + 2;
 
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine(lastError);

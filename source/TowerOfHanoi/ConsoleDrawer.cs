@@ -15,6 +15,12 @@ namespace TowerOfHanoi
     {
       Console.Clear();
 
+      Console.ForegroundColor = ConsoleColor.White;
+      foreach (var headerLine in _header)
+      {
+        Console.WriteLine(headerLine);
+      }
+
       CreateConsoleColors(game.PegSize);
 
       DrawPegOutline(1, game.PegSize);
@@ -24,8 +30,19 @@ namespace TowerOfHanoi
       DrawPegDiscs(1, game.Peg1);
       DrawPegDiscs(2, game.Peg2);
       DrawPegDiscs(3, game.Peg3);
+
+      Console.CursorTop = _header.Length + game.PegSize;
+      Console.CursorLeft = 0;
+      Console.WriteLine("");
+      Console.WriteLine("");
     }
 
+    private readonly string[] _header = new string[]
+    {
+      "Tower Of Hanoi",
+      "Discovering the Power of Recursion",
+      ""
+    };
 
     private static readonly Dictionary<int, ConsoleColor> discColors = new Dictionary<int, ConsoleColor>();
 
@@ -63,7 +80,7 @@ namespace TowerOfHanoi
     private void DrawDisc(int pegLeftOffset, int pegSize, int discNumber, int size, ConsoleColor color)
     {
       Console.ForegroundColor = color;
-      Console.CursorTop = pegSize - 1 - discNumber;
+      Console.CursorTop = _header.Length + pegSize - 1 - discNumber;
       Console.CursorLeft = pegLeftOffset;
       var output = "|";
       for (var i = 0; i < size - 1; i++)
@@ -77,7 +94,7 @@ namespace TowerOfHanoi
 
     private void DrawPegOutline(int pegNumber, int pegSize)
     {
-      var topStart = 0;
+      var topStart = _header.Length;
       var leftOffset = CalculateLeftOffset(pegNumber, pegSize);
       Console.ForegroundColor = ConsoleColor.Cyan;
       for (var i = 0; i < pegSize; i++)
