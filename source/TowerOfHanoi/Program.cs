@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Threading;
 using TowerOfHanoi.Common;
 
@@ -8,9 +12,24 @@ namespace TowerOfHanoi
   {
     static void Main(string[] args)
     {
-      var game = new TowerGame(3);
+
+      Console.Write("Enter the number of discs per peg (2 - 18): ");
+      var pegSize = int.Parse(Console.ReadLine() ?? "3");
+
+      Console.WriteLine("Choose the solver to run: ");
+      var solvers = FindAllSolvers().ToArray();
+      var solverNumber = 0;
+      foreach (var solverType in solvers)
+      {
+        solverNumber++;
+        Console.WriteLine($"{solverNumber}: {solverType.FullName}");
+      }
+      solverNumber = int.Parse(Console.ReadLine() ?? "1");
+
+
+      var game = new TowerGame(pegSize);
       var drawer = new ConsoleDrawer();
-      var solver = new SimpleSolver.SimpleSolver();
+      var solver = (ISolveTowers)Activator.CreateInstance(solvers[solverNumber - 1]);
 
       var lastError = "";
       drawer.Draw(game);
@@ -24,7 +43,7 @@ namespace TowerOfHanoi
 
         try
         {
-          game.PerformMove(move.FromPegNumber, move.ToPegNumber);
+          game.PerformMove(move.From, move.To);
         }
         catch (Exception e)
         {
@@ -55,6 +74,35 @@ namespace TowerOfHanoi
 
       Console.ForegroundColor = ConsoleColor.White;
       Console.ReadLine();
+    }
+
+    private static IEnumerable<Type> FindAllSolvers()
+    {
+      var scanFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+      foreach (var dllFilePath in Directory.GetFiles(scanFolder, "*.dll"))
+      {
+        Assembly assembly = null;
+        try
+        {
+          assembly = Assembly.LoadFrom(dllFilePath);
+        }
+        catch
+        {
+          //skip it
+        }
+
+        if (assembly != null)
+        {
+          foreach (var solver in assembly
+            .DefinedTypes
+            .Where(t => t
+              .ImplementedInterfaces
+              .Contains(typeof(ISolveTowers))))
+          {
+            yield return solver;
+          }
+        }
+      }
     }
   }
 }

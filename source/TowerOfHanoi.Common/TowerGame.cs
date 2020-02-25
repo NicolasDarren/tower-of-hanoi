@@ -7,6 +7,11 @@ namespace TowerOfHanoi.Common
   {
     public TowerGame(int pegSize)
     {
+      if (pegSize < 1)
+      {
+        throw new InvalidOperationException("Cannot start empty Game");
+      }
+
       PegSize = pegSize;
       CreateNewGame();
     }
@@ -39,15 +44,15 @@ namespace TowerOfHanoi.Common
       return _peg3.CurrentNumberOfDiscs == PegSize;
     }
 
-    public void PerformMove(int fromPegNumber, int toPegNumber)
+    public void PerformMove(PegNumber from, PegNumber to)
     {
-      if (fromPegNumber == toPegNumber)
+      if (from == to)
       {
         return;
       }
 
-      var fromPeg = GetPegByNumber(fromPegNumber);
-      var toPeg = GetPegByNumber(toPegNumber);
+      var fromPeg = GetPegByNumber(from);
+      var toPeg = GetPegByNumber(to);
 
       var disc = fromPeg.TakeTopDisc();
       try
@@ -66,13 +71,13 @@ namespace TowerOfHanoi.Common
       return new ReadonlyTowerGame(this);
     }
 
-    private IPeg GetPegByNumber(int pegNumber)
+    private IPeg GetPegByNumber(PegNumber pegNumber)
     {
       return pegNumber switch
       {
-        1 => _peg1,
-        2 => _peg2,
-        3 => _peg3,
+        PegNumber.One => _peg1,
+        PegNumber.Two => _peg2,
+        PegNumber.Three => _peg3,
         _ => throw new InvalidOperationException("Invalid peg number")
       };
     }

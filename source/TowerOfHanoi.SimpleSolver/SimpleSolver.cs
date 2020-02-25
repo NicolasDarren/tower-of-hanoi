@@ -14,13 +14,13 @@ namespace TowerOfHanoi.SimpleSolver
         throw new NotSupportedException("I can only solve towers that have 3 discs");
       }
 
-      yield return new TowerGameMoveModel { FromPegNumber = 1, ToPegNumber = 3 };
-      yield return new TowerGameMoveModel { FromPegNumber = 1, ToPegNumber = 2 };
-      yield return new TowerGameMoveModel { FromPegNumber = 3, ToPegNumber = 2 };
-      yield return new TowerGameMoveModel { FromPegNumber = 1, ToPegNumber = 3 };
-      yield return new TowerGameMoveModel { FromPegNumber = 2, ToPegNumber = 1 };
-      yield return new TowerGameMoveModel { FromPegNumber = 2, ToPegNumber = 3 };
-      yield return new TowerGameMoveModel { FromPegNumber = 1, ToPegNumber = 3 };
+      yield return new TowerGameMoveModel { From = PegNumber.One, To = PegNumber.Three };
+      yield return new TowerGameMoveModel { From = PegNumber.One, To = PegNumber.Two };
+      yield return new TowerGameMoveModel { From = PegNumber.Three, To = PegNumber.Two };
+      yield return new TowerGameMoveModel { From = PegNumber.One, To = PegNumber.Three };
+      yield return new TowerGameMoveModel { From = PegNumber.Two, To = PegNumber.One };
+      yield return new TowerGameMoveModel { From = PegNumber.Two, To = PegNumber.Three };
+      yield return new TowerGameMoveModel { From = PegNumber.One, To = PegNumber.Three };
     }
   }
 }

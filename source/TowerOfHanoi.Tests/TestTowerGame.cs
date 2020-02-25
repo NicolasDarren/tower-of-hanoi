@@ -14,6 +14,16 @@ namespace TowerOfHanoi.Tests
     public class Constructor
     {
       [Test]
+      public void GivenPegSize0_ShouldThrow()
+      {
+        //Arrange
+        //Act
+        Action action = () => CreateSut(0);
+        //Assert
+        action.Should().Throw<InvalidOperationException>().WithMessage("Cannot start empty Game");
+      }
+
+      [Test]
       public void ShouldCreate3DiscsWithSameSize()
       {
         //Arrange
@@ -48,7 +58,7 @@ namespace TowerOfHanoi.Tests
         //Arrange
         var sut = CreateSut(3);
         //Act
-        sut.PerformMove(1,2);
+        sut.PerformMove(PegNumber.One,PegNumber.Two);
         //Assert
         sut.Peg1.CurrentNumberOfDiscs.Should().Be(2);
         sut.Peg2.CurrentNumberOfDiscs.Should().Be(1);
@@ -60,9 +70,9 @@ namespace TowerOfHanoi.Tests
       {
         //Arrange
         var sut = CreateSut(3);
-        sut.PerformMove(1, 2);
+        sut.PerformMove(PegNumber.One, PegNumber.Two);
         //Act
-        Action action = ()=>sut.PerformMove(1, 2);
+        Action action = ()=>sut.PerformMove(PegNumber.One, PegNumber.Two);
         //Assert
         action.Should().Throw<InvalidOperationException>().WithMessage("*bigger disc*");
       }
@@ -72,9 +82,9 @@ namespace TowerOfHanoi.Tests
       {
         //Arrange
         var sut = CreateSut(3);
-        sut.PerformMove(1, 2);
+        sut.PerformMove(PegNumber.One, PegNumber.Two);
         //Act
-        Action action = () => sut.PerformMove(1, 2);
+        Action action = () => sut.PerformMove(PegNumber.One, PegNumber.Two);
         //Assert
         action.Should().Throw<InvalidOperationException>();
         sut.Peg1.CurrentNumberOfDiscs.Should().Be(2);
@@ -88,7 +98,7 @@ namespace TowerOfHanoi.Tests
         //Arrange
         var sut = CreateSut(3);
         //Act
-        Action action = () => sut.PerformMove(2, 3);
+        Action action = () => sut.PerformMove(PegNumber.Two, PegNumber.Three);
         //Assert
         action.Should().Throw<InvalidOperationException>().WithMessage("*empty*");
       }

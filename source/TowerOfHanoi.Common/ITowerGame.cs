@@ -10,7 +10,7 @@
   }
   public interface ITowerGame: IReadonlyTowerGame
   {
-    void PerformMove(int fromPegNumber, int toPegNumber);
+    void PerformMove(PegNumber from, PegNumber to);
     IReadonlyTowerGame AsReadonly();
   }
 }

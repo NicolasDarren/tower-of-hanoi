@@ -2,7 +2,7 @@
 {
   public class TowerGameMoveModel
   {
-    public int FromPegNumber { get; set; }
-    public int ToPegNumber { get; set; }
+    public PegNumber From { get; set; }
+    public PegNumber To { get; set; }
   }
 }

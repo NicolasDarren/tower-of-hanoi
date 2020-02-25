@@ -36,8 +36,8 @@ namespace TowerOfHanoi.Common
 
         yield return new TowerGameMoveModel
         {
-          FromPegNumber = sourcePeg,
-          ToPegNumber = destPeg,
+          From = (PegNumber)sourcePeg,
+          To = (PegNumber)destPeg,
         };
 
         if (game.IsGameOver())
