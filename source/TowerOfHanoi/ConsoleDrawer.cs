@@ -21,17 +21,17 @@ namespace TowerOfHanoi
         Console.WriteLine(headerLine);
       }
 
-      CreateConsoleColors(game.PegSize);
+      CreateConsoleColors(game.MaxDiscsPerPeg);
 
-      DrawPegOutline(1, game.PegSize);
-      DrawPegOutline(2, game.PegSize);
-      DrawPegOutline(3, game.PegSize);
+      DrawPegOutline(1, game.MaxDiscsPerPeg);
+      DrawPegOutline(2, game.MaxDiscsPerPeg);
+      DrawPegOutline(3, game.MaxDiscsPerPeg);
 
       DrawPegDiscs(1, game.Peg1);
       DrawPegDiscs(2, game.Peg2);
       DrawPegDiscs(3, game.Peg3);
 
-      Console.CursorTop = _header.Length + game.PegSize;
+      Console.CursorTop = _header.Length + game.MaxDiscsPerPeg;
       Console.CursorLeft = 0;
       Console.WriteLine("");
       Console.WriteLine("");

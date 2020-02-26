@@ -61,8 +61,8 @@ namespace TowerOfHanoi
 
     private static List<TowerGameMoveLogModel> RunTowerThroughTheSolver(
       ISolveTowers solver, 
-      TowerGame game,
-      ConsoleDrawer drawer)
+      ITowerGame game,
+      IDrawTheTowerGame drawer)
     {
       var moves = new List<TowerGameMoveLogModel>();
 
@@ -113,7 +113,7 @@ namespace TowerOfHanoi
         var moveNumber = moveIndex + 1;
         var log = moves[moveIndex];
         Console.ForegroundColor = log.Valid ? ConsoleColor.White : ConsoleColor.Red;
-        var line = $"{moveNumber}: ";
+        var line = $"{moveNumber:000}: ";
         line += $"[{log.Peg1CountBefore}|{log.Peg2CountBefore}|{log.Peg3CountBefore}]";
         line += $" {log.Move.From.ToString().PadRight(5)} -> {log.Move.To.ToString().PadRight(5)} ";
         line += $"[{log.Peg1CountAfter}|{log.Peg2CountAfter}|{log.Peg3CountAfter}]";

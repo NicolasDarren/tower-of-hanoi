@@ -12,7 +12,7 @@ namespace TowerOfHanoi.Common
         throw new InvalidOperationException("Cannot start empty Game");
       }
 
-      PegSize = pegSize;
+      MaxDiscsPerPeg = pegSize;
       CreateNewGame();
     }
 
@@ -22,31 +22,31 @@ namespace TowerOfHanoi.Common
 
     private void CreateNewGame()
     {
-      _peg1 = new Peg(PegSize);
-      _peg2 = new Peg(PegSize);
-      _peg3 = new Peg(PegSize);
+      _peg1 = new Peg(MaxDiscsPerPeg);
+      _peg2 = new Peg(MaxDiscsPerPeg);
+      _peg3 = new Peg(MaxDiscsPerPeg);
       Peg1 = new ReadonlyPeg(_peg1);
       Peg2 = new ReadonlyPeg(_peg2);
       Peg3 = new ReadonlyPeg(_peg3);
 
-      foreach (var size in Enumerable.Range(1, PegSize).Reverse())
+      foreach (var size in Enumerable.Range(1, MaxDiscsPerPeg).Reverse())
       {
         _peg1.PlaceDisc(new Disc(size));
       }
     }
-    public int PegSize { get; }
+    public int MaxDiscsPerPeg { get; }
     public IReadonlyPeg Peg1 { get; private set; } 
     public IReadonlyPeg Peg2 { get; private set; }
     public IReadonlyPeg Peg3 { get; private set; }
 
     public bool IsGameUntouched()
     {
-      return _peg1.CurrentNumberOfDiscs == PegSize;
+      return _peg1.CurrentNumberOfDiscs == MaxDiscsPerPeg;
     }
 
     public bool IsGameOver()
     {
-      return _peg3.CurrentNumberOfDiscs == PegSize;
+      return _peg3.CurrentNumberOfDiscs == MaxDiscsPerPeg;
     }
 
     public void PerformMove(PegNumber from, PegNumber to)

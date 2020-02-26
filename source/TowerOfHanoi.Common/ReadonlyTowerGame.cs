@@ -11,7 +11,7 @@ namespace TowerOfHanoi.Common
       _underlying = underlying;
     }
 
-    public int PegSize => _underlying.PegSize;
+    public int MaxDiscsPerPeg => _underlying.MaxDiscsPerPeg;
 
     public IReadonlyPeg Peg1 => _underlying.Peg1;
 

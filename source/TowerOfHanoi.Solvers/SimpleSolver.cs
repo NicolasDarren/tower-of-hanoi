@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using TowerOfHanoi.Common;
 
-namespace TowerOfHanoi.SimpleSolver
+namespace TowerOfHanoi.Solvers
 {
   public class SimpleSolver : ISolveTowers
   {
     public int MillisecondDelayBetweenMoves { get; } = 400;
     public IEnumerable<TowerGameMoveModel> SolveFromStart(IReadonlyTowerGame game)
     {
-      if (game.PegSize != 3)
+      if (game.MaxDiscsPerPeg != 3)
       {
-        throw new NotSupportedException("I can only solve towers that have 3 discs");
+        throw new NotSupportedException("I'm a SIMPLE solver, I can only solve towers that have 3 discs");
       }
 
       yield return new TowerGameMoveModel { From = PegNumber.One, To = PegNumber.Three };

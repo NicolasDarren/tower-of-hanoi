@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TowerOfHanoi.Common\TowerOfHanoi.Common.csproj" />
-    <ProjectReference Include="..\TowerOfHanoi.SimpleSolver\TowerOfHanoi.SimpleSolver.csproj" />
   </ItemGroup>
 
 </Project>
