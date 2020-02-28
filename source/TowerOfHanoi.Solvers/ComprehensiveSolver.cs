@@ -15,8 +15,10 @@ namespace TowerOfHanoi.Solvers
         throw new NotSupportedException("This solver can only solve games from the start");
       }
 
-      yield return new TowerGameMoveModel { From = PegNumber.One, To = PegNumber.Three };
-      yield break;
+      //TODO: implement this.
+      //Your code goes here
+      //Sample:
+      //yield return TowerGameMoveModel.CreateMove(PegNumber.One, PegNumber.Three);
     }
   }
 }
