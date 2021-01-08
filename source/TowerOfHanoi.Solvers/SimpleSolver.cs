@@ -7,6 +7,7 @@ namespace TowerOfHanoi.Solvers
   public class SimpleSolver : ISolveTowers
   {
     public int MillisecondDelayBetweenMoves { get; } = 400;
+    
     public IEnumerable<TowerGameMoveModel> SolveFromStart(IReadonlyTowerGame game)
     {
       if (game.MaxDiscsPerPeg != 3)

@@ -34,6 +34,7 @@ namespace TowerOfHanoi.Common
         _peg1.PlaceDisc(new Disc(size));
       }
     }
+    
     public int MaxDiscsPerPeg { get; }
     public IReadonlyPeg Peg1 { get; private set; } 
     public IReadonlyPeg Peg2 { get; private set; }

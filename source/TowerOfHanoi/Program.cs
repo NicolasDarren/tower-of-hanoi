@@ -13,7 +13,6 @@ namespace TowerOfHanoi
   {
     static void Main(string[] args)
     {
-
       Console.Write("Enter the number of discs per peg (2 - 18): ");
       var pegSize = int.Parse(Console.ReadLine() ?? "3");
 
@@ -25,8 +24,8 @@ namespace TowerOfHanoi
         solverNumber++;
         Console.WriteLine($"{solverNumber}: {solverType.FullName}");
       }
-      solverNumber = int.Parse(Console.ReadLine() ?? "1");
 
+      solverNumber = int.Parse(Console.ReadLine() ?? "1");
 
       var game = new TowerGame(pegSize);
       var drawer = new ConsoleDrawer();

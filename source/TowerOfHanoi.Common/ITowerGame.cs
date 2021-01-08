@@ -9,6 +9,7 @@
     bool IsGameUntouched();
     bool IsGameOver();
   }
+  
   public interface ITowerGame: IReadonlyTowerGame
   {
     void PerformMove(PegNumber from, PegNumber to);
