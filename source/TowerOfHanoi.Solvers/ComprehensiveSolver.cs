@@ -19,6 +19,8 @@ namespace TowerOfHanoi.Solvers
       //Your code goes here
       //Sample:
       //yield return TowerGameMoveModel.CreateMove(PegNumber.One, PegNumber.Three);
+
+      throw new NotImplementedException();
     }
   }
 }
